@@ -1,0 +1,11 @@
+.form-group input{
+    display: inline;
+    font-size: 1em;
+    padding: 0.25em 0.5em;
+}
+
+.form-group textarea{
+    display: inline;
+    font-size: 1em;
+    padding: 0.25em 0.5em;
+}
