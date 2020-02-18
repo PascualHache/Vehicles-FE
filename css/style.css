@@ -21,3 +21,7 @@
     border-radius: 6px;
     width: 50%;
 }
+
+.tab2{
+    display: none;
+  }
