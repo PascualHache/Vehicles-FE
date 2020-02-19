@@ -67,7 +67,7 @@
                 </div>
                 <div>
                     <p id="carInfo"></p>
-                    <table id="tablita" style="width:100%">
+                    <table id="tablita1" style="width:100%">
                         <tr>
                             <th>Car:</th>
                             <td></td>
@@ -79,13 +79,29 @@
                             <th>Color</th>
                         </tr>
                     </table>
+                    <table id="tablita2" style="width:100%">
+                        <tr>
+                            <th>Wheels:</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Wheel 1</th>
+                            <th>Wheel 2</th>
+                            <th>Wheel 3</th>
+                            <th>Wheel 4</th>
+                        </tr>
+                    </table>
                 </div>
-            
             </form>
-            <div class="form-group">
+            <div class="container">
                 <div class="row justify-content-center">
-                    <button class="bg-primary" id="create" onclick="createCar('1212SDS','SEAT','ROJO')">Create
+                    <button class="bg-primary" id="button1" onclick="createCar('1212SDS','SEAT','ROJO')">Create
                         Car</button>
+                </div>
+                <div class="row justify-content-center" >
+                    <button class="bg-primary" id="button2" onclick="updateWheels()">Add Wheels</button>
                 </div>
             </div>
             <button onclick="myToggle()">toggle2</button>
