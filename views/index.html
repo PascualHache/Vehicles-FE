@@ -20,19 +20,19 @@
                         <div class="form-group">
                             <div class="col-4">
                                 <label for="plate">Plate</label>
-                                <input type="text" id="plate" name="plate" pattern="[A-za-z]{4,15}">
+                                <input type="text" id="plate" name="plate" pattern="[0-9]{4}[a-zA-Z]{3}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-4">
                                 <label for="brand">Brand</label>
-                                <input type="text" id="brand" name="brand" pattern="[A-za-z0-9]{4,15}">
+                                <input type="text" id="brand" name="brand" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-4">
                                 <label for="color">Color</label>
-                                <input type="text" id="color" name="color" pattern="[A-za-z0-9]{4,15}">
+                                <input type="text" id="color" name="color" required>
                             </div>
                         </div>
                     </div>
@@ -87,21 +87,24 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <th>Wheel 1</th>
-                            <th>Wheel 2</th>
-                            <th>Wheel 3</th>
-                            <th>Wheel 4</th>
+                            <th>Wheel 1: Brand1</th>
+                            <th>Wheel 2: Brand2</th>
+                            <th>Wheel 3: Brand3</th>
+                            <th>Wheel 4: Brand4</th>
                         </tr>
                     </table>
                 </div>
             </form>
             <div class="container">
                 <div class="row justify-content-center">
-                    <button class="bg-primary" id="button1" onclick="createCar('1212SDS','SEAT','ROJO')">Create
-                        Car</button>
+                    <!-- <button class="bg-primary" id="button1" type="submit" onclick="fillCar()">Create
+                        Car</button> -->
+                        <button class="bg-primary" id="button1" type="submit" onclick="validateCarFields()">Create
+                            Car</button>
                 </div>
                 <div class="row justify-content-center" >
-                    <button class="bg-primary" id="button2" onclick="updateWheels()">Add Wheels</button>
+                    <!-- <button class="bg-primary" id="button2" onclick="updateWheels()">Add Wheels</button> -->
+                    <button class="bg-primary" id="button2" onclick="validateWheelDiam()">Add Wheels</button>
                 </div>
             </div>
             <button onclick="myToggle()">toggle2</button>

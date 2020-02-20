@@ -10,7 +10,7 @@
     padding: 0.25em 0.5em;
 }
 
-#create{
+#create, #button1, #button2{
     font-size: 1.2em;
     color: white;
     border: none;
@@ -22,17 +22,10 @@
     width: 50%;
 }
 
-.tab2{
+#tab2{
     display: none;
   }
 
-
-
-  /* table, th, td {
-     border: 1px solid black; 
-     padding: 2px; 
-  } */
-
-  table{
+table{
     visibility: hidden;
   }
