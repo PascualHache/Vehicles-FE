@@ -2,32 +2,30 @@
 window.onload = function initFunction() {
     myToggle();
 };
-function createCar(plate, brand, color) {
-    var car = new Car(plate, color, brand);
+var carList;
+var wheelsList = [];
+wheelsList.length = 4;
+var lastpage = false;
+function sendCarForm() {
+    var car = new Car(carList[0], carList[1], carList[2]);
     for (var index = 0; index < 4; index++) {
-        car.addWheel(new Wheel((index + 1), "Unknown"));
+        car.addWheel(new Wheel(wheelsList[index][1], wheelsList[index][0]));
     }
-    var carList = [car.plate, car.brand, car.color];
-    addRowCarTable(carList);
-    // JSON.stringify(car.wheels)
+    clearForm();
+    clearTable();
+    lastpage = false;
     myToggle();
 }
 function fillCar() {
     var plate = document.getElementById("plate");
     var brand = document.getElementById("brand");
     var color = document.getElementById("color");
-    // var car = new Car(plate, brand, color);
-    // for (let index = 0; index < 4; index++) {
-    //   car.addWheel(new Wheel((index + 1), "Unknown"));
-    // }
-    var carList = [plate.value, brand.value, color.value];
+    carList = [plate.value, brand.value, color.value];
     addRowCarTable(carList);
-    // JSON.stringify(car.wheels)
     myToggle();
     return carList;
 }
 function updateWheels() {
-    var objWheels = [];
     var table = document.getElementById("tablita2");
     var row = table.insertRow(2);
     for (var index = 0; index < 4; index++) {
@@ -35,6 +33,7 @@ function updateWheels() {
         var w = document.getElementById("WheelBrand" + [index + 1]);
         var d = document.getElementById('WheelD' + [index + 1]);
         cell.innerHTML = w.value + " : " + d.value;
+        wheelsList[index] = [w.value, d.value];
     }
 }
 function myToggle() {
@@ -44,20 +43,30 @@ function myToggle() {
     var t2 = document.getElementById("tablita2");
     var b1 = document.getElementById("button1");
     var b2 = document.getElementById("button2");
-    if (y.style.display === "none") {
-        x.style.display = "none";
-        y.style.display = "block";
-        t1.style.visibility = "visible";
-        t2.style.visibility = "visible";
-        b1.style.display = "none";
-        b2.style.display = "block";
+    var b3 = document.getElementById("button3");
+    if (!lastpage) {
+        if (y.style.display === "none") {
+            x.style.display = "none";
+            y.style.display = "block";
+            t1.style.visibility = "visible";
+            t2.style.visibility = "visible";
+            b1.style.display = "none";
+            b2.style.display = "block";
+            b3.style.display = "none";
+        }
+        else {
+            x.style.display = "block";
+            y.style.display = "none";
+            t2.style.visibility = "hidden";
+            b1.style.display = "block";
+            b2.style.display = "none";
+            b3.style.display = "none";
+        }
     }
     else {
-        x.style.display = "block";
-        y.style.display = "none";
-        b1.style.display = "block";
+        b1.style.display = "none";
         b2.style.display = "none";
-        t2.style.visibility = "hidden";
+        b3.style.display = "block";
     }
 }
 function addRowCarTable(carList) {
@@ -86,23 +95,42 @@ function validateCarFields() {
             alert("El campo matrícula está vacío. introduce una matrícula válida");
         }
         else if (plateTest.validity.patternMismatch) {
-            alert("La matricula debe contener 4 digitos y 3 letras");
+            alert("La matrícula debe contener 4 digitos y 3 letras");
         }
     }
 }
 function validateWheelDiam() {
     var isError = false;
     for (var index = 0; index < 4; index++) {
-        // let w: any = document.getElementById("WheelBrand"+[index+1]);
         var d = document.getElementById('WheelD' + [index + 1]);
         var num = d.value;
         if (!(num > 0.4 && num < 2)) {
-            alert("El diámetro de la rueda " + (index + 1) + " no es correcto");
+            alert("El diámetro de la rueda " + (index + 1) + " no es correcto. Debe ser un valor comprendido entre 0.4 y 2");
             isError = true;
             break;
         }
     }
     if (!isError) {
         updateWheels();
+        lastpage = true;
+        myToggle();
     }
+}
+function clearForm() {
+    carList = [];
+    wheelsList = [];
+    var elements = document.getElementsByTagName("input");
+    for (var n = 0; n < elements.length; n++) {
+        if (elements[n].type == "text") {
+            elements[n].value = "";
+        }
+    }
+}
+function clearTable() {
+    var table1 = document.getElementById("tablita1");
+    var table2 = document.getElementById("tablita2");
+    var rowCount1 = table1.rows.length;
+    var rowCount2 = table2.rows.length;
+    table1.deleteRow(rowCount1 - 1);
+    table2.deleteRow(rowCount2 - 1);
 }
